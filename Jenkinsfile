@@ -11,3 +11,5 @@ pipeline {
         }
     }
 }
+
+// REF: https://plugins.jenkins.io/sbt/
