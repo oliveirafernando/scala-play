@@ -14,6 +14,7 @@ pipeline {
                 }
             }
             steps {
+                    sh "sbt clean"
                     echo "Compiling..."
                     sh "docker ps -a"
             }
