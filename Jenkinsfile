@@ -1,7 +1,6 @@
 //pipeline {
-//    agent {
-//        dockerfile true
-//    }
+//    agent none
+//
 //    stages {
 //        stage('Compile') {
 //            steps {
@@ -10,6 +9,11 @@
 //            }
 //        }
 //        stage('Build') {
+//            agent {
+//                dockerfile {
+//                    filename "Dockerfile"
+//                }
+//            }
 //            steps {
 //                    sh "sbt clean"
 //                    echo "Compiling..."
@@ -18,23 +22,39 @@
 //        }
 //    }
 //}
-// REF: https://plugins.jenkins.io/sbt/
+
+
+//pipeline {
+//    agent {
+//        docker{
+//            reuseNode true
+//            image 'maven:3.5.0-jdk-8'
+//        }
+//    }
+//
+//    stages {
+//        stage('Building image') {
+//            steps {
+//                script {
+//                    sh "l -lia"
+//                    docker build -t scala-helloworld .
+//                    docker ps -a
+//                }
+//            }
+//        }
+//    }
+//}
 
 pipeline {
-    agent {
-        docker{
-            reuseNode true
-            image 'maven:3.5.0-jdk-8'
-        }
-    }
-
+    agent any
     stages {
-        stage('Building image') {
+        stage('Build image') {
             steps {
+                echo 'Starting to build docker image'
+
                 script {
-                    sh "l -lia"
-                    docker build -t scala-helloworld .
-                    docker ps -a
+                    def customImage = docker.build("my-image:${env.BUILD_ID}")
+                    customImage.push()
                 }
             }
         }
