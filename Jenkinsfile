@@ -24,7 +24,7 @@ pipeline {
     agent {
         docker{
             reuseNode true
-            image 'openjdk:8-jdk-alpine'
+            image 'maven:3.5.0-jdk-8'
         }
     }
 
@@ -33,7 +33,8 @@ pipeline {
             steps {
                 script {
                     sh "l -lia"
-                    sh "docker ps -a"
+                    docker build -t scala-helloworld .
+                    docker ps -a
                 }
             }
         }
