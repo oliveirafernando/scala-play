@@ -33,10 +33,12 @@ pipeline {
             git 'https://github.com/oliveirafernando/scala-play-jenkins-docker.git'
         }
         node {
-            stage('Building image') {
-                steps {
-                    script {
-                        docker.build registry + ":$BUILD_NUMBER"
+            stages {
+                stage('Building image') {
+                    steps {
+                        script {
+                            docker.build registry + ":$BUILD_NUMBER"
+                        }
                     }
                 }
             }
