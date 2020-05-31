@@ -22,11 +22,9 @@
 
 pipeline {
     agent {
-        node {
-            docker{
-                reuseNode true
-                image 'openjdk:8-jdk-alpine'
-            }
+        docker{
+            reuseNode true
+            image 'openjdk:8-jdk-alpine'
         }
     }
 
