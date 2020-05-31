@@ -21,25 +21,20 @@
 // REF: https://plugins.jenkins.io/sbt/
 
 pipeline {
-    environment {
-        registry = "gustavoapolinario/jenkins-docker"
-        registryCredential = 'dockerhub'
-    }
     agent {
-        dockerfile true
-    }
-    stages {
-        steps {
-            git 'https://github.com/oliveirafernando/scala-play-jenkins-docker.git'
-        }
         node {
-            stages {
-                stage('Building image') {
-                    steps {
-                        script {
-                            docker.build registry + ":$BUILD_NUMBER"
-                        }
-                    }
+            docker{
+                reuseNode true
+                image 'openjdk:8-jdk-alpine'
+            }
+        }
+    }
+
+    stages {
+        stage('Building image') {
+            steps {
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
