@@ -32,7 +32,8 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    sh "l -lia"
+                    sh "docker ps -a"
                 }
             }
         }
