@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile true
+    }
     stages {
         stage('Compile') {
             steps {
@@ -8,11 +10,6 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                docker { 
-                    image 'oliveirafernando/sbt-base:1.2.8'
-                }
-            }
             steps {
                     sh "sbt clean"
                     echo "Compiling..."
