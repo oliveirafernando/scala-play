@@ -23,3 +23,5 @@ jobs:
       run: sbt test
     - name: Docker build
       run: docker build -t scala-play .
+    - name: Docker images
+        run: docker images
