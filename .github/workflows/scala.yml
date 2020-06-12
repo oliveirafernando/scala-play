@@ -1,4 +1,5 @@
 name: Scala CI
+description: 'Scala Play experimentation'
 
 on:
   push:
@@ -21,4 +22,5 @@ jobs:
       run: sbt sbtVersion
     - name: Run tests
       run: sbt test
-    
+    - name: Docker build
+      run: docker build -t scala-play .
