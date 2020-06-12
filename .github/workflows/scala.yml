@@ -1,5 +1,4 @@
 name: Scala CI
-description: 'Scala Play experimentation'
 
 on:
   push:
