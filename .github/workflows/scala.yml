@@ -17,7 +17,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Check SBT version
+      run: sbt sbtVersion
     - name: Run tests
-      run: sbt sbtVersion; sbt test
-   - name: Docker images
-      run: Docker images
+      run: sbt test
+    
