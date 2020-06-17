@@ -26,13 +26,12 @@ jobs:
       
     - name: Run tests
       run: sbt test
-      
-    - name: Docker build
-      run: docker build -t scala-play .
 
     - name: Build the tagged Docker image
       run: docker build --file Dockerfile --tag oliveirafernando/scala-play:latest .
 
-
     - name: Docker images
       run: docker images
+
+    - name: Push the latest Docker image
+      run: docker push oliveirafernando/scala-play:latest
