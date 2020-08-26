@@ -41,4 +41,4 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-      - run: echo ">>> Executed"
+      - run: echo "Event name = ${{github.event_name}} , Event action = ${{github.event.action}} , Event PR Merged = ${{github.event.pull_request.merged}} , Github REFS ${{github.ref}}"
