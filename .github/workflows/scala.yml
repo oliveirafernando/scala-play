@@ -35,3 +35,10 @@ jobs:
 
     - name: Push the latest Docker image
       run: docker push oliveirafernando/scala-play:latest
+
+  test-to-run-when-pr-merged-to-master:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - run: echo ">>> Executed"
